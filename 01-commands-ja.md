@@ -109,7 +109,7 @@ CMD ["default message"]
 
 # 課題
 
-- このディレクトリのDockerfileを利用してイメージを作成してください
+- 01-commandsディレクトリのDockerfileを利用してイメージを作成してください
 - 作成したイメージを実行してください
 - Dockerfileを編集して、以下の挙動を持つイメージをつくってください
   - `docker run <image>` で `hello, world`と出力。

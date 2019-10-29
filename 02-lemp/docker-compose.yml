@@ -1,0 +1,38 @@
+version: '3'
+services:
+  php:
+    container_name: lemp-php
+    build:
+      context: ./dockers
+      dockerfile: Dockerfile.php
+    env_file:
+      - .env
+    environment:
+      - DB_HOST=db
+    links:
+      - db
+    volumes:
+      - ./php:/var/www/html
+
+  nginx:
+    container_name: lemp-nginx
+    image: nginx:1.17.4-alpine
+    ports:
+      - 80:80
+    links:
+      - php
+    volumes:
+      - ./php:/var/www/html
+      - ./nginx:/etc/nginx/conf.d
+
+  db:
+    container_name: lemp-db
+    image: mysql:8.0.3
+    restart: on-failure
+    env_file:
+      - .env
+    volumes:
+      - dbvolume:/var/lib/mysql
+
+volumes:
+  dbvolume:
